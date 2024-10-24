@@ -1,0 +1,35 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def cadastrar():
+    nome = entry_nome.get()
+    idade = entry_idade.get()
+    
+    if nome and idade:
+        lista_dados.insert(tk.END, f"Nome: {nome}, Idade: {idade}")
+        entry_nome.delete(0, tk.END)  
+        entry_idade.delete(0, tk.END)  
+    else:
+        messagebox.showwarning("Atenção", "Por favor, preencha todos os campos.")
+
+root = tk.Tk()
+root.title("Cadastro de Usuários")
+root.geometry("300x300")
+
+label_nome = tk.Label(root, text="Nome:")
+label_nome.pack(pady=5)
+entry_nome = tk.Entry(root)
+entry_nome.pack(pady=5)
+
+label_idade = tk.Label(root, text="Idade:")
+label_idade.pack(pady=5)
+entry_idade = tk.Entry(root)
+entry_idade.pack(pady=5)
+
+botao_cadastrar = tk.Button(root, text="Cadastrar", command=cadastrar)
+botao_cadastrar.pack(pady=10)
+
+lista_dados = tk.Listbox(root)
+lista_dados.pack(pady=10, fill=tk.BOTH, expand=True)
+
+root.mainloop()
